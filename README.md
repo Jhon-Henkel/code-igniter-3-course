@@ -7,6 +7,7 @@ Iniciando o projeto
 *******************
 - Copiar os arquivos .example da pasta application/config para a pasta application/config removendo o .example
 - Configurar o arquivo database.php com as informações do banco de dados
+- Gerar um md5 e adicionar ele no arquivo config.php na chave ***encryption_key***
 
 ---
 ###################
