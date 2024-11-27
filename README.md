@@ -2,6 +2,12 @@ Repositório criado para aprender sobre o codeigniter 3, que é um framework PHP
 
 Estou seguindo o curso https://www.udemy.com/course/codeigniter-php
 
+*******************
+Iniciando o projeto
+*******************
+- Copiar os arquivos .example da pasta application/config para a pasta application/config removendo o .example
+- Configurar o arquivo database.php com as informações do banco de dados
+
 ---
 ###################
 What is CodeIgniter
