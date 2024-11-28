@@ -10,7 +10,7 @@ Iniciando o projeto
 - Gerar um md5 e adicionar ele no arquivo config.php na chave ***encryption_key***
 - Rodar os comandos SQL do arquivo database.sql para criar as tabelas no banco de dados
 - Acesso à área restrita = Usuário: admin Senha: 123456
-
+- Configurar a URL base no arquivo util.js na cont ***BASE_URL***
 ---
 ###################
 What is CodeIgniter
