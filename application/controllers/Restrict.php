@@ -5,6 +5,6 @@ class Restrict extends CI_Controller
 {
     public function index()
     {
-        $this->template->show('restrict');
+        $this->template->show('login');
     }
 }

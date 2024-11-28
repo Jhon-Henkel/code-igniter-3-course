@@ -25,7 +25,7 @@
 </head>
 <body id="page-top">
 <!-- Navigation -->
-<nav class="navbar navbar-default navbar-fixed-top">
+<nav class="navbar navbar-default navbar-shrink navbar-fixed-top">
     <div class="container">
         <!-- Brand and toggle get grouped for better mobile display -->
         <div class="navbar-header page-scroll">
@@ -35,7 +35,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand page-scroll" href="#page-top"><img src="<?= base_url(); ?>public/images/logo.svg" alt="Lattes theme logo"></a>
+            <a class="navbar-brand page-scroll" href="<?= base_url(); ?>#page-top"><img src="<?= base_url(); ?>public/images/logo.svg" alt="Lattes theme logo"></a>
         </div>
         <!-- Collect the nav links, forms, and other content for toggling -->
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
@@ -44,16 +44,19 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#about">Sobre</a>
+                    <a class="page-scroll" href="<?= base_url(); ?>#about">Sobre</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#portfolio">Cursos</a>
+                    <a class="page-scroll" href="<?= base_url(); ?>#portfolio">Cursos</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#team">Equipe</a>
+                    <a class="page-scroll" href="<?= base_url(); ?>#team">Equipe</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#contact">Contato</a>
+                    <a class="page-scroll" href="<?= base_url(); ?>#contact">Contato</a>
+                </li>
+                <li>
+                    <a class="page-scroll" href="<?= base_url('restrict'); ?>">Login</a>
                 </li>
             </ul>
         </div>
@@ -61,15 +64,3 @@
     </div>
     <!-- /.container-fluid -->
 </nav>
-<!-- Header -->
-<header>
-    <div class="container">
-        <div class="slider-container">
-            <div class="intro-text">
-                <div class="intro-lead-in">Aprenda com profissionais qualificados!</div>
-                <div class="intro-heading">Alfahelix treinamentos</div>
-                <a href="#about" class="page-scroll btn btn-xl">Conheça nossos cursos</a>
-            </div>
-        </div>
-    </div>
-</header>
