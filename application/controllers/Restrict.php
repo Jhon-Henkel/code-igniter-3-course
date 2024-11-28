@@ -14,17 +14,30 @@ class Restrict extends CI_Controller
 
     public function index()
     {
-        $data = [
-            "scripts" => [
-                "util.js",
-                "login.js"
-            ]
-        ];
-        $this->template->show('login', $data);
+        if ($this->session->userdata("user_id")) {
+            $this->template->show('restrict');
+        } else {
+            $data = [
+                "scripts" => [
+                    "util.js",
+                    "login.js"
+                ]
+            ];
+            $this->template->show('login', $data);
+        }
+    }
+
+    public function logoff()
+    {
+        $this->session->sess_destroy();
+        header("Location: " . base_url() . "restrict");
     }
 
     public function ajax_login()
     {
+        if (! $this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
         $json = ["status" => self::HAS_ERROR, "error_list" => []];
         $username = $this->input->post('username');
 
