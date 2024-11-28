@@ -1,6 +1,9 @@
+FROM composer:2.2 AS composer-php
+
 FROM php:7.1-apache
 
 COPY . .
+COPY --from=composer-php /usr/bin/composer /usr/bin/composer
 
 # installing zip
 RUN apt-get update && apt-get install -y zlib1g-dev libzip-dev unzip
