@@ -1,0 +1,3 @@
+CREATE SCHEMA alfahelix;
+CREATE TABLE users (user_id INT NOT NULL AUTO_INCREMENT, user_login VARCHAR(30) NOT NULL, password_hash VARCHAR(255) NOT NULL, user_full_name VARCHAR(100) NOT NULL, user_email VARCHAR(100) NOT NULL, PRIMARY KEY(user_id));
+INSERT INTO users (user_login, password_hash, user_full_name, user_email) VALUES ('admin', '$2y$10$.Kur1Fxo8a9xunGfLbzg/OvwOhnLh08T2Yc2Q.2T6numfJTL7nmX.', 'Usuário Dev', 'dev@dev.com')
