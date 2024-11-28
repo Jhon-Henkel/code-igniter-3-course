@@ -44,19 +44,16 @@
                     <a href="#page-top"></a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#about">About</a>
+                    <a class="page-scroll" href="#about">Sobre</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#services">Services</a>
+                    <a class="page-scroll" href="#portfolio">Cursos</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#portfolio">Portfolio</a>
+                    <a class="page-scroll" href="#team">Equipe</a>
                 </li>
                 <li>
-                    <a class="page-scroll" href="#team">Team</a>
-                </li>
-                <li>
-                    <a class="page-scroll" href="#contact">Contact</a>
+                    <a class="page-scroll" href="#contact">Contato</a>
                 </li>
             </ul>
         </div>
@@ -69,9 +66,9 @@
     <div class="container">
         <div class="slider-container">
             <div class="intro-text">
-                <div class="intro-lead-in">Welcome To Our Studio!</div>
-                <div class="intro-heading">It's Nice To Meet You</div>
-                <a href="#about" class="page-scroll btn btn-xl">Tell Me More</a>
+                <div class="intro-lead-in">Aprenda com profissionais qualificados!</div>
+                <div class="intro-heading">Alfahelix treinamentos</div>
+                <a href="#about" class="page-scroll btn btn-xl">Conheça nossos cursos</a>
             </div>
         </div>
     </div>
