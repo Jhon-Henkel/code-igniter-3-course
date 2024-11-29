@@ -14,15 +14,12 @@ class Restrict extends CI_Controller
 
     public function index()
     {
+        $data = ["scripts" => ["util.js"]];
         if ($this->session->userdata("user_id")) {
-            $this->template->show('restrict');
+            $data["scripts"][] = "restrict.js";
+            $this->template->show('restrict', $data);
         } else {
-            $data = [
-                "scripts" => [
-                    "util.js",
-                    "login.js"
-                ]
-            ];
+            $data["scripts"][] = "login.js";
             $this->template->show('login', $data);
         }
     }
