@@ -129,3 +129,56 @@
                 </div>
             </div>
         </section>
+
+        <div id="modal_course" class="modal fade">
+            <div class="modal-dialog modal-lg">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">
+                            <span>&times;</span>
+                        </button>
+                        <h4 class="modal-title">Cursos</h4>
+                    </div>
+                    <div class="modal-body">
+                        <form id="form_course">
+                            <input name="course_id" hidden>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="course_name">Nome</label>
+                                <div class="col-lg-10">
+                                    <input name="course_name" id="course_name" class="form-control" required maxlength="100">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="course_img">Imagem</label>
+                                <div class="col-lg-10">
+                                    <input type="file" name="course_img" id="course_img" class="form-control" accept="image/*">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="course_duration">Duração</label>
+                                <div class="col-lg-10">
+                                    <input name="course_duration" id="course_duration" class="form-control" type="number" min="0">
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="col-lg-2 control-label" for="course_description">Descrição</label>
+                                <div class="col-lg-10">
+                                    <textarea name="course_description" id="course_description" class="form-control"></textarea>
+                                    <span class="help-block"></span>
+                                </div>
+                            </div>
+                            <div class="form-group text-center">
+                                <button type="submit" id="btn_save_course" class="btn btn-primary">
+                                    <i class="fa fa-save"></i>
+                                    &nbsp;&nbsp;Salvar
+                                </button>
+                                <span class="help-block"></span>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
