@@ -55,4 +55,26 @@ class Restrict extends CI_Controller
         }
         echo json_encode($json);
     }
+
+    public function ajax_import_image()
+    {
+        if (!$this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+        $config = ["upload_path" => "./tmp/", "allowed_types" => "gif|jpg|jpeg|png", "overwrite" => true];
+        $this->load->library('upload', $config);
+
+        $json = ["status" => self::HAS_ERROR, "error" => ""];
+        if (!$this->upload->do_upload('image_file')) {
+            $json['error'] = $this->upload->display_errors('', '');
+        } else {
+            if ($this->upload->data('file_size') <= 1024) {
+                $fileName = $this->upload->data('file_name');
+                $json = ["status" => self::NO_ERROR, "image_path" => base_url("tmp/$fileName")];
+            } else {
+                $json["error"] = "O arquivo não pode ter mais de 1MB!";
+            }
+        }
+        echo json_encode($json);
+    }
 }

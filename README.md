@@ -11,6 +11,7 @@ Iniciando o projeto
 - Rodar os comandos SQL do arquivo database.sql para criar as tabelas no banco de dados
 - Acesso à área restrita = Usuário: admin Senha: 123456
 - Configurar a URL base no arquivo util.js na cont ***BASE_URL***
+- Criar pasta tmp na raiz do projeto e rodar o comando `chmod 777 tmp -R` para dar permissão de escrita
 ---
 ###################
 What is CodeIgniter

@@ -152,7 +152,13 @@
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" for="course_img">Imagem</label>
                                 <div class="col-lg-10">
-                                    <input type="file" name="course_img" id="course_img" class="form-control" accept="image/*">
+                                    <img id="course_img_path" src="" style="max-width: 400px; max-height: 400px;" alt="course_img">
+                                    <label class="btn btn-block btn-info">
+                                        <i class="fa fa-upload"></i>
+                                        &nbsp;&nbsp;Importar Imagem
+                                        <input type="file" id="btn_upload_course_image" accept="image/*" style="display: none">
+                                    </label>
+                                    <input id="course_img" name="course_img">
                                     <span class="help-block"></span>
                                 </div>
                             </div>
@@ -203,9 +209,15 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" for="member_photo">Foto</label>
+                                <label class="col-lg-2 control-label" for="member_img">Foto</label>
                                 <div class="col-lg-10">
-                                    <input type="file" name="member_photo" id="member_photo" class="form-control" accept="image/*">
+                                    <img id="member_img_path" src="" style="max-width: 400px; max-height: 400px;" alt="member_img">
+                                    <label class="btn btn-block btn-info">
+                                        <i class="fa fa-upload"></i>
+                                        &nbsp;&nbsp;Importar Imagem
+                                        <input type="file" id="btn_upload_member_image" accept="image/*" style="display: none">
+                                    </label>
+                                    <input id="member_img" name="member_img">
                                     <span class="help-block"></span>
                                 </div>
                             </div>
