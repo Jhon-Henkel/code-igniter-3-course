@@ -1,3 +1,5 @@
 CREATE SCHEMA alfahelix;
 CREATE TABLE users (user_id INT NOT NULL AUTO_INCREMENT, user_login VARCHAR(30) NOT NULL, password_hash VARCHAR(255) NOT NULL, user_full_name VARCHAR(100) NOT NULL, user_email VARCHAR(100) NOT NULL, PRIMARY KEY(user_id));
-INSERT INTO users (user_login, password_hash, user_full_name, user_email) VALUES ('admin', '$2y$10$mjs0xu0h6aeh7ynUVyBryOjwS/pRYrr72xNKPD3/PXkJfGKHQ0r62', 'Usuário Dev', 'dev@dev.com')
+INSERT INTO users (user_login, password_hash, user_full_name, user_email) VALUES ('admin', '$2y$10$mjs0xu0h6aeh7ynUVyBryOjwS/pRYrr72xNKPD3/PXkJfGKHQ0r62', 'Usuário Dev', 'dev@dev.com');
+CREATE TABLE courses (course_id INT NOT NULL AUTO_INCREMENT, course_name VARCHAR(100) NOT NULL, course_img VARCHAR(100) NULL, course_duration decimal(3,1) NOT NULL, course_description TEXT NULL, PRIMARY KEY(course_id));
+CREATE TABLE team (member_id INT NOT NULL AUTO_INCREMENT, member_name VARCHAR(100) NOT NULL, member_photo VARCHAR(100) NOT NULL, member_description TEXT NULL, PRIMARY KEY(member_id));
