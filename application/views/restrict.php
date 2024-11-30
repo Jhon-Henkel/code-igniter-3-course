@@ -16,7 +16,7 @@
                         <div class="row">
                             <div class="col-lg-12 text-center">
                                 <div class="form-group">
-                                    <a class="btn btn-link">
+                                    <a class="btn btn-link" user_id="<?=$user_id?>" id="btn_your_user">
                                         <i class="fa fa-user"></i>
                                     </a>
                                     <a href="<?php echo base_url('restrict/logoff') ?>" class="btn btn-link">
@@ -140,8 +140,8 @@
                         <h4 class="modal-title">Cursos</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="form_course">
-                            <input name="course_id" hidden>
+                        <form id="form_course" method="post">
+                            <input id="course_id" name="course_id" hidden>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" for="course_name">Nome</label>
                                 <div class="col-lg-10">
@@ -199,8 +199,8 @@
                         <h4 class="modal-title">Membro</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="form_member">
-                            <input name="member_id" hidden>
+                        <form id="form_member" method="post">
+                            <input id="member_id" name="member_id" hidden>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" for="member_name">Nome</label>
                                 <div class="col-lg-10">
@@ -251,8 +251,8 @@
                         <h4 class="modal-title">Usuário</h4>
                     </div>
                     <div class="modal-body">
-                        <form id="form_user">
-                            <input name="user_id" hidden>
+                        <form id="form_user" method="post">
+                            <input id="user_id" name="user_id" hidden>
                             <div class="form-group">
                                 <label class="col-lg-2 control-label" for="user_login">Login</label>
                                 <div class="col-lg-10">

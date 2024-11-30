@@ -29,6 +29,7 @@ class Restrict extends CI_Controller
         $data = ["scripts" => ["util.js"]];
         if ($this->session->userdata("user_id")) {
             $data["scripts"][] = "restrict.js";
+            $data["user_id"] = $this->session->userdata("user_id");
             $this->template->show('restrict', $data);
         } else {
             $data["scripts"][] = "login.js";
@@ -235,6 +236,29 @@ class Restrict extends CI_Controller
             $this->UsersModel->update($data['user_id'], $data);
             unset($data['user_id']);
         }
+
+        echo json_encode($json);
+    }
+
+    public function ajax_get_user_data()
+    {
+        $this->validateAjax();
+
+        $this->load->model('UsersModel');
+        $userId = $this->input->post('user_id');
+        $data = $this->UsersModel->get_data($userId)->result_array()[0];
+
+        $json = $this->getDefaultResponse();
+        $json['status'] = self::NO_ERROR;
+        $json['input'] = [
+            'user_id' => $data['user_id'],
+            'user_login' => $data['user_login'],
+            'user_full_name' => $data['user_full_name'],
+            'user_email' => $data['user_email'],
+            'user_email_confirm' => $data['user_email'],
+            'user_password' => $data['password_hash'],
+            'user_password_confirm' => $data['password_hash']
+        ];
 
         echo json_encode($json);
     }
