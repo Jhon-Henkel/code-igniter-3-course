@@ -86,7 +86,7 @@ class Restrict extends CI_Controller
         echo json_encode($json);
     }
 
-    public function ajax_save_couse()
+    public function ajax_save_course()
     {
         $this->validateAjax();
         $json = $this->getDefaultResponse();
@@ -117,9 +117,14 @@ class Restrict extends CI_Controller
         if ($json['status'] === self::NO_ERROR && ! empty($data['course_img'])) {
             $fileName = basename($data['course_img']);
             $oldPath = getcwd() . "/tmp/$fileName";
-            $newPath = getcwd() . "/images/courses/$fileName";
+            $newPath = getcwd() . "/public/images/courses/$fileName";
             rename($oldPath, $newPath);
             $data['course_img'] = "/public/images/courses/$fileName";
+        }
+
+        if ($json['status'] === self::HAS_ERROR) {
+            echo json_encode($json);
+            return;
         }
 
         if (empty($data['course_id'])) {

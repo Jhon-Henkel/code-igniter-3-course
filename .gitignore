@@ -5,3 +5,5 @@ application/config/config.php
 vendor
 composer.lock
 tmp
+public/images/courses
+public/images/team
