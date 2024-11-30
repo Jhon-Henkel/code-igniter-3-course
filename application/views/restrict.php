@@ -163,9 +163,9 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <label class="col-lg-2 control-label" for="course_duration">Duração</label>
+                                <label class="col-lg-2 control-label" for="course_duration">Duração (h)</label>
                                 <div class="col-lg-10">
-                                    <input name="course_duration" id="course_duration" class="form-control" type="number" min="0">
+                                    <input name="course_duration" id="course_duration" class="form-control" type="number" step="0.1">
                                     <span class="help-block"></span>
                                 </div>
                             </div>

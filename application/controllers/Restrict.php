@@ -12,6 +12,18 @@ class Restrict extends CI_Controller
         $this->load->library('session');
     }
 
+    protected function validateAjax()
+    {
+        if (! $this->input->is_ajax_request()) {
+            exit('No direct script access allowed');
+        }
+    }
+
+    protected function getDefaultResponse(): array
+    {
+        return ["status" => self::HAS_ERROR, "error_list" => [], "error" => ""];
+    }
+
     public function index()
     {
         $data = ["scripts" => ["util.js"]];
@@ -32,10 +44,8 @@ class Restrict extends CI_Controller
 
     public function ajax_login()
     {
-        if (! $this->input->is_ajax_request()) {
-            exit('No direct script access allowed');
-        }
-        $json = ["status" => self::HAS_ERROR, "error_list" => []];
+        $this->validateAjax();
+        $json = $this->getDefaultResponse();
         $username = $this->input->post('username');
 
         if (empty($username)) {
@@ -58,13 +68,11 @@ class Restrict extends CI_Controller
 
     public function ajax_import_image()
     {
-        if (!$this->input->is_ajax_request()) {
-            exit('No direct script access allowed');
-        }
+        $this->validateAjax();
         $config = ["upload_path" => "./tmp/", "allowed_types" => "gif|jpg|jpeg|png", "overwrite" => true];
         $this->load->library('upload', $config);
 
-        $json = ["status" => self::HAS_ERROR, "error" => ""];
+        $json = $this->getDefaultResponse();
         if (!$this->upload->do_upload('image_file')) {
             $json['error'] = $this->upload->display_errors('', '');
         } else {
@@ -75,6 +83,52 @@ class Restrict extends CI_Controller
                 $json["error"] = "O arquivo não pode ter mais de 1MB!";
             }
         }
+        echo json_encode($json);
+    }
+
+    public function ajax_save_couse()
+    {
+        $this->validateAjax();
+        $json = $this->getDefaultResponse();
+
+        $this->load->model('CoursesModel');
+        $data = $this->input->post();
+
+        if (empty($data['course_name'])) {
+            $json['error_list']['#course_name'] = "Nome do curso é obrigatório!";
+        } else {
+            if ($this->CoursesModel->is_duplicated('course_name', $data['course_name'], $data['course_id'])) {
+                $json['error_list']['#course_name'] = "Nome do curso já existe!";
+            }
+        }
+        $data['course_duration'] = floatval($data['course_duration']);
+        if (empty($data['course_duration'])) {
+            $json['error_list']['#course_duration'] = "Duração do curso é obrigatório!";
+        } else {
+            if (! ($data['course_duration'] > 0 && $data['course_duration'] < 100)) {
+                $json['error_list']['#course_duration'] = "Duração do curso tem que ser maior que zero (h) e menor que 100 (h)!";
+            }
+        }
+
+        if (count($json['error_list']) === 0) {
+            $json['status'] = self::NO_ERROR;
+        }
+
+        if ($json['status'] === self::NO_ERROR && ! empty($data['course_img'])) {
+            $fileName = basename($data['course_img']);
+            $oldPath = getcwd() . "/tmp/$fileName";
+            $newPath = getcwd() . "/images/courses/$fileName";
+            rename($oldPath, $newPath);
+            $data['course_img'] = "/public/images/courses/$fileName";
+        }
+
+        if (empty($data['course_id'])) {
+            $this->CoursesModel->insert($data);
+        } else {
+            $this->CoursesModel->update($data['course_id'], $data);
+            unset($data['course_id']);
+        }
+
         echo json_encode($json);
     }
 }

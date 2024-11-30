@@ -11,6 +11,6 @@ class Home extends CI_Controller
                 "theme-scripts.js"
             ]
         ];
-        $this->template->show('home');
+        $this->template->show('home', $data);
     }
 }

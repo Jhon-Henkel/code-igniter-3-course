@@ -12,6 +12,7 @@ Iniciando o projeto
 - Acesso à área restrita = Usuário: admin Senha: 123456
 - Configurar a URL base no arquivo util.js na cont ***BASE_URL***
 - Criar pasta tmp na raiz do projeto e rodar o comando `chmod 777 tmp -R` para dar permissão de escrita
+- Criar pasta public/images/courses e public/images/team do projeto e rodar o comando `chmod 777 tmp -R` para dar permissão de escrita em cada pasta
 ---
 ###################
 What is CodeIgniter
