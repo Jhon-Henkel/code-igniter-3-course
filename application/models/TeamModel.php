@@ -18,18 +18,18 @@ class TeamModel extends CI_Model
         return $this->db->get();
     }
 
-    public function insert($data)
+    public function insert($data): void
     {
         $this->db->insert('team', $data);
     }
 
-    public function update(int $id, $data)
+    public function update(int $id, $data): void
     {
         $this->db->where('member_id', $id);
         $this->db->update('team', $data);
     }
 
-    public function delete(int $id)
+    public function delete(int $id): void
     {
         $this->db->where('member_id', $id);
         $this->db->delete('team');
