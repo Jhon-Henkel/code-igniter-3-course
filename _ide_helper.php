@@ -35,7 +35,8 @@
  * @property CI_Zip              $zip
  * @property Template            $template
  * @property UsersModel          $UsersModel
- * @property CoursesModel          $CoursesModel
+ * @property CoursesModel        $CoursesModel
+ * @property TeamModel           $TeamModel
  *
  * // Add custom libraries or models here as needed
  */

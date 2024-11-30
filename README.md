@@ -1,4 +1,8 @@
-Repositório criado para aprender sobre o codeigniter 3, que é um framework PHP.
+Repositório criado para aprender sobre o codeigniter 3, que é um framework PHP. Neste repositório foquei em aprender os 
+fundamentos do codeigniter, pois vou precisar usar esse framework em meu novo emprego. 
+
+Sendo assim, como esse curso é um pouco antigo, não estou usando as melhores práticas de programação, como, por exemplo, 
+código limpo, que passa bem longe desse repositório rsrsrs. Segui exatamente o que o curso mandou fazer.
 
 Estou seguindo o curso https://www.udemy.com/course/codeigniter-php
 

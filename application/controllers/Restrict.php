@@ -136,4 +136,45 @@ class Restrict extends CI_Controller
 
         echo json_encode($json);
     }
+
+    public function ajax_save_member()
+    {
+        $this->validateAjax();
+        $json = $this->getDefaultResponse();
+
+        $this->load->model('TeamModel');
+        $data = $this->input->post();
+
+        if (empty($data['member_name'])) {
+            $json['error_list']['#member_name'] = "Nome do membro é obrigatório!";
+        }
+
+        if (count($json['error_list']) === 0) {
+            $json['status'] = self::NO_ERROR;
+        }
+
+        if ($json['status'] === self::NO_ERROR && ! empty($data['member_img'])) {
+            $fileName = basename($data['member_img']);
+            $oldPath = getcwd() . "/tmp/$fileName";
+            $newPath = getcwd() . "/public/images/team/$fileName";
+            rename($oldPath, $newPath);
+            $data['member_img'] = "/public/images/team/$fileName";
+        }
+
+        if ($json['status'] === self::HAS_ERROR) {
+            echo json_encode($json);
+            return;
+        }
+
+        $data['member_photo'] = $data['member_img'];
+        unset($data['member_img']);
+        if (empty($data['member_id'])) {
+            $this->TeamModel->insert($data);
+        } else {
+            $this->TeamModel->update($data['member_id'], $data);
+            unset($data['member_id']);
+        }
+
+        echo json_encode($json);
+    }
 }
