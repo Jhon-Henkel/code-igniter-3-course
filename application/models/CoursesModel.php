@@ -29,7 +29,7 @@ class CoursesModel extends CI_Model
         $this->db->update('courses', $data);
     }
 
-    public function delete(int $id, string $select = null): void
+    public function delete(int $id): void
     {
         $this->db->where('course_id', $id);
         $this->db->delete('courses');

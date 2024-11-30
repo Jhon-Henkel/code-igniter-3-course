@@ -29,7 +29,7 @@ class TeamModel extends CI_Model
         $this->db->update('team', $data);
     }
 
-    public function delete(int $id, string $select = null)
+    public function delete(int $id)
     {
         $this->db->where('member_id', $id);
         $this->db->delete('team');

@@ -43,7 +43,7 @@ class UsersModel extends CI_Model
         $this->db->update('users', $data);
     }
 
-    public function delete(int $id, string $select = null): void
+    public function delete(int $id): void
     {
         $this->db->where('user_id', $id);
         $this->db->delete('users');
