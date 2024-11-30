@@ -177,4 +177,65 @@ class Restrict extends CI_Controller
 
         echo json_encode($json);
     }
+
+    public function ajax_save_user()
+    {
+        $this->validateAjax();
+        $json = $this->getDefaultResponse();
+
+        $this->load->model('UsersModel');
+        $data = $this->input->post();
+
+        if (empty($data['user_login'])) {
+            $json['error_list']['#user_login'] = "Login é obrigatório!";
+        } else {
+            if ($this->UsersModel->is_duplicated('user_login', $data['user_login'], $data['user_id'])) {
+                $json['error_list']['#user_login'] = "Login já existe!";
+            }
+        }
+
+        if (empty($data['user_full_name'])) {
+            $json['error_list']['#user_full_name'] = "Nome completo é obrigatório!";
+        }
+
+        if (empty($data['user_email'])) {
+            $json['error_list']['#user_email'] = "E-mail é obrigatório!";
+        } else {
+            if ($this->UsersModel->is_duplicated('user_email', $data['user_email'], $data['user_id'])) {
+                $json['error_list']['#user_email'] = "E-mail já existe!";
+            } elseif ($data['user_email'] !== $data['user_email_confirm']) {
+                $json['error_list']['#user_email'] = "";
+                $json['error_list']['#user_email_confirm'] = "E-mails não conferem!";
+            }
+        }
+
+        if (empty($data['user_password'])) {
+            $json['error_list']['#user_password'] = "Senha é obrigatório!";
+        } else {
+            if ($data['user_password'] !== $data['user_password_confirm']) {
+                $json['error_list']['#user_password'] = "";
+                $json['error_list']['#user_password_confirm'] = "Senhas não conferem!";
+            }
+        }
+
+        if (count($json['error_list']) === 0) {
+            $json['status'] = self::NO_ERROR;
+        }
+
+        if ($json['status'] === self::HAS_ERROR) {
+            echo json_encode($json);
+            return;
+        }
+
+        $data['password_hash'] = password_hash($data['user_password'], PASSWORD_DEFAULT);
+        unset($data['user_password_confirm'], $data['user_email_confirm'], $data['user_password']);
+        if (empty($data['member_id'])) {
+            $this->UsersModel->insert($data);
+        } else {
+            $this->UsersModel->update($data['user_id'], $data);
+            unset($data['user_id']);
+        }
+
+        echo json_encode($json);
+    }
 }

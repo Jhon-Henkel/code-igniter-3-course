@@ -14,6 +14,8 @@ $(function ()  {
     })
 
     $("#btn_add_user").click(function () {
+        clearErrors();
+        $("#form_user")[0].reset();
         $("#modal_user").modal();
     })
 
@@ -61,6 +63,28 @@ $(function ()  {
                 clearErrors();
                 if (response["status"] === 1) {
                     $("#modal_member").modal("hide");
+                } else {
+                    showErrorsModal(response["error_list"]);
+                }
+            }
+        })
+        return false
+    })
+
+    $("#form_user").submit(function () {
+        $.ajax({
+            type: "POST",
+            url: BASE_URL + "restrict/ajax_save_user",
+            dataType: "json",
+            data: $(this).serialize(),
+            beforeSend: function () {
+                clearErrors();
+                $("#btn_save_user").siblings(".help-block").html(loading("Salvando..."));
+            },
+            success: function (response) {
+                clearErrors();
+                if (response["status"] === 1) {
+                    $("#modal_user").modal("hide");
                 } else {
                     showErrorsModal(response["error_list"]);
                 }
