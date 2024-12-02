@@ -290,4 +290,32 @@ class Restrict extends CI_Controller
             "data" => $data
         ]);
     }
+
+    public function ajax_list_member()
+    {
+        $this->validateAjax();
+        $this->load->model('TeamModel');
+        $team = $this->TeamModel->getDataTabe();
+        $data = [];
+        foreach ($team as $member) {
+            $row = [];
+            $row[] = $member->member_name;
+            if ($member->member_img) {
+                $row[] = '<img src="' . base_url($member->member_img) . '" alt="' . $member->member_name . '" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">';
+            } else {
+                $row[] = "";
+            }
+            $row[] = $member->member_duration;
+            $row[] = '<div class="description">' . $member->member_description . '</div>';
+            $row[] = '<div style="display: inline-block"><button class="btn btn-primary btn-edit-member" course_id="' . $member->member_id . '"><i class="fa fa-edit"></i></button><button class="btn btn-danger btn-del-member" course_id="' . $member->member_id . '"><i class="fa fa-times"></i></button></div>';
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->TeamModel->recordsTotal(),
+            "recordsFiltered" => $this->TeamModel->recordsFiltered(),
+            "data" => $data
+        ]);
+    }
 }
