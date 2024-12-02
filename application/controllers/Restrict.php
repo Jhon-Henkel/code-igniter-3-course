@@ -300,14 +300,13 @@ class Restrict extends CI_Controller
         foreach ($team as $member) {
             $row = [];
             $row[] = $member->member_name;
-            if ($member->member_img) {
-                $row[] = '<img src="' . base_url($member->member_img) . '" alt="' . $member->member_name . '" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">';
+            if ($member->member_photo) {
+                $row[] = '<img src="' . base_url($member->member_photo) . '" alt="' . $member->member_name . '" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">';
             } else {
                 $row[] = "";
             }
-            $row[] = $member->member_duration;
             $row[] = '<div class="description">' . $member->member_description . '</div>';
-            $row[] = '<div style="display: inline-block"><button class="btn btn-primary btn-edit-member" course_id="' . $member->member_id . '"><i class="fa fa-edit"></i></button><button class="btn btn-danger btn-del-member" course_id="' . $member->member_id . '"><i class="fa fa-times"></i></button></div>';
+            $row[] = '<div style="display: inline-block"><button class="btn btn-primary btn-edit-member" member_id="' . $member->member_id . '"><i class="fa fa-edit"></i></button><button class="btn btn-danger btn-del-member" member_id="' . $member->member_id . '"><i class="fa fa-times"></i></button></div>';
             $data[] = $row;
         }
 
@@ -315,6 +314,29 @@ class Restrict extends CI_Controller
             "draw" => $this->input->post('draw'),
             "recordsTotal" => $this->TeamModel->recordsTotal(),
             "recordsFiltered" => $this->TeamModel->recordsFiltered(),
+            "data" => $data
+        ]);
+    }
+
+    public function ajax_list_users()
+    {
+        $this->validateAjax();
+        $this->load->model('UsersModel');
+        $users = $this->UsersModel->getDataTabe();
+        $data = [];
+        foreach ($users as $user) {
+            $row = [];
+            $row[] = $user->user_login;
+            $row[] = $user->user_full_name;
+            $row[] = $user->user_email;
+            $row[] = '<div style="display: inline-block"><button class="btn btn-primary btn-edit-user" user_id="' . $user->user_id . '"><i class="fa fa-edit"></i></button><button class="btn btn-danger btn-del-user" user_id="' . $user->user_id . '"><i class="fa fa-times"></i></button></div>';
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->UsersModel->recordsTotal(),
+            "recordsFiltered" => $this->UsersModel->recordsFiltered(),
             "data" => $data
         ]);
     }

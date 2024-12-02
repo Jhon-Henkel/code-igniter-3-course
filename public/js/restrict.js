@@ -130,7 +130,21 @@ $(function ()  {
         processing: true,
         serverSide: true,
         ajax: {
-            url: BASE_URL + "restrict/ajax_list_courses",
+            url: BASE_URL + "restrict/ajax_list_member",
+            type: "POST"
+        },
+        columnDefs: [
+            {targets: "no-sort", orderable: false},
+            {targets: "dt-center", className: "dt-center"}
+        ]
+    })
+
+    $("#dt_users").DataTable({
+        autoWidth: false,
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: BASE_URL + "restrict/ajax_list_users",
             type: "POST"
         },
         columnDefs: [
