@@ -262,4 +262,32 @@ class Restrict extends CI_Controller
 
         echo json_encode($json);
     }
+
+    public function ajax_list_courses()
+    {
+        $this->validateAjax();
+        $this->load->model('CoursesModel');
+        $courses = $this->CoursesModel->getDataTabe();
+        $data = [];
+        foreach ($courses as $course) {
+            $row = [];
+            $row[] = $course->course_name;
+            if ($course->course_img) {
+                $row[] = '<img src="' . base_url($course->course_img) . '" alt="' . $course->course_name . '" class="img-thumbnail" style="max-width: 100px; max-height: 100px;">';
+            } else {
+                $row[] = "";
+            }
+            $row[] = $course->course_duration;
+            $row[] = '<div class="description">' . $course->course_description . '</div>';
+            $row[] = '<div style="display: inline-block"><button class="btn btn-primary btn-edit-course" course_id="' . $course->course_id . '"><i class="fa fa-edit"></i></button><button class="btn btn-danger btn-del-course" course_id="' . $course->course_id . '"><i class="fa fa-times"></i></button></div>';
+            $data[] = $row;
+        }
+
+        echo json_encode([
+            "draw" => $this->input->post('draw'),
+            "recordsTotal" => $this->CoursesModel->recordsTotal(),
+            "recordsFiltered" => $this->CoursesModel->recordsFiltered(),
+            "data" => $data
+        ]);
+    }
 }

@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="icon" href="favicon.ico">
     <title>Lattes - Onepage Multipurpose Bootstrap HTML</title>
     <link href="<?= base_url(); ?>public/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
@@ -14,6 +13,8 @@
     <link href="<?= base_url(); ?>public/css/owl.theme.default.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>public/css/style.css" rel="stylesheet">
     <script src="<?= base_url(); ?>public/js/ie-emulation-modes-warning.js"></script>
+    <link rel="stylesheet" href="https://cdn.datatables.net/2.1.8/css/dataTables.dataTables.css" />
+    <link href="https://cdn.jsdelivr.net/npm/sweetalert2@11.14.5/dist/sweetalert2.min.css" rel="stylesheet">
     <?php
     if (isset($styles)) {
         foreach ($styles as $style) {
