@@ -361,4 +361,24 @@ class Restrict extends CI_Controller
 
         echo json_encode($json);
     }
+
+    public function ajax_get_member_data()
+    {
+        $this->validateAjax();
+
+        $this->load->model('TeamModel');
+        $memberId = $this->input->post('member_id');
+        $data = $this->TeamModel->get_data($memberId)->result_array()[0];
+
+        $json = $this->getDefaultResponse();
+        $json['status'] = self::NO_ERROR;
+        $json['input'] = [
+            'member_id' => $data['member_id'],
+            'member_name' => $data['member_name'],
+            'member_description' => $data['member_description'],
+            'member_photo' => base_url() . $data['member_photo'],
+        ];
+
+        echo json_encode($json);
+    }
 }

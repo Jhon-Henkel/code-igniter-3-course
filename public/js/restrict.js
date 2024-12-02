@@ -149,6 +149,27 @@ $(function ()  {
         }
     })
 
+    function activeBtnMember() {
+        $(".btn-edit-member").click(function () {
+            $.ajax({
+                type: "POST",
+                url: BASE_URL + "restrict/ajax_get_member_data",
+                dataType: "json",
+                data: {"member_id": $(this).attr("member_id")},
+                success: function (response) {
+                    clearErrors();
+                    $("#form_member")[0].reset();
+                    $.each(response["input"], function (id, value) {
+                        $("#"+id).val(value);
+                    })
+                    $("#member_img_path").attr("src", response["input"]["member_photo"]);
+                    $("#modal_member").modal();
+                }
+            })
+            return false
+        })
+    }
+
     $("#dt_team").DataTable({
         autoWidth: false,
         processing: true,
@@ -160,7 +181,10 @@ $(function ()  {
         columnDefs: [
             {targets: "no-sort", orderable: false},
             {targets: "dt-center", className: "dt-center"}
-        ]
+        ],
+        initComplete: function () {
+            activeBtnMember();
+        }
     })
 
     $("#dt_users").DataTable({
