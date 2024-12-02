@@ -340,4 +340,25 @@ class Restrict extends CI_Controller
             "data" => $data
         ]);
     }
+
+    public function ajax_get_course_data()
+    {
+        $this->validateAjax();
+
+        $this->load->model('CoursesModel');
+        $courseId = $this->input->post('course_id');
+        $data = $this->CoursesModel->get_data($courseId)->result_array()[0];
+
+        $json = $this->getDefaultResponse();
+        $json['status'] = self::NO_ERROR;
+        $json['input'] = [
+            'course_id' => $data['course_id'],
+            'course_name' => $data['course_name'],
+            'course_img' => base_url() . $data['course_img'],
+            'course_duration' => $data['course_duration'],
+            'course_description' => $data['course_description']
+        ];
+
+        echo json_encode($json);
+    }
 }
