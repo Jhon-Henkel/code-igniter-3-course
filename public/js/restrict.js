@@ -112,7 +112,7 @@ $(function ()  {
     })
 
     function activeBtnCourse() {
-        $(".btn-edit-course").click(function () {
+        $(".btn-edit-course").off("click").on("click",function () {
             $.ajax({
                 type: "POST",
                 url: BASE_URL + "restrict/ajax_get_course_data",
@@ -129,6 +129,30 @@ $(function ()  {
                 }
             })
             return false
+        })
+        $(".btn-del-course").off("click").on("click", function () {
+            const btn = $(this)
+            swal.fire({
+                title: "Atenção",
+                text: "Deseja realmente excluir este curso?",
+                icon: "question",
+                showCancelButton: true,
+                cancelButtonText: "Não",
+                confirmButtonColor: "#d9534f",
+                confirmButtonText: "Sim",
+            }).then(function (isConfirm) {
+                if (isConfirm.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: BASE_URL + "restrict/ajax_delete_course_data",
+                        data: {"course_id": btn.attr("course_id")},
+                        success: function () {
+                            swal.fire("Sucesso!", "Ação realizada com sucesso!", "success");
+                            $("#dt_courses").DataTable().ajax.reload();
+                        }
+                    })
+                }
+            })
         })
     }
 
