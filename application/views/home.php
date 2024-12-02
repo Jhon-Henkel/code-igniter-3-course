@@ -26,28 +26,18 @@
         <section class="overlay-dark bg-img1 dark-bg short-section">
             <div class="container text-center">
                 <div class="row">
-                    <div class="col-md-3 mb-sm-30">
+                    <div class="col-md-offset-3 col-md-3 mb-sm-30">
                         <div class="counter-item">
-                            <h2 data-count="59">X</h2>
-                            <h6>instrutores</h6>
+                            <a class="page-scroll" href="<?= base_url(); ?>#portfolio">
+                                <h6>Cursos</h6>
+                            </a>
                         </div>
                     </div>
                     <div class="col-md-3 mb-sm-30">
                         <div class="counter-item">
-                            <h2 data-count="1054">X</h2>
-                            <h6>alunos</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-sm-30">
-                        <div class="counter-item">
-                            <h2 data-count="34">X</h2>
-                            <h6>cursos</h6>
-                        </div>
-                    </div>
-                    <div class="col-md-3 mb-sm-30">
-                        <div class="counter-item">
-                            <h2 data-count="154">X</h2>
-                            <h6>avaliações</h6>
+                            <a class="page-scroll" href="<?= base_url(); ?>#team">
+                                <h6>Equipe</h6>
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -64,20 +54,38 @@
                     </div>
                 </div>
                 <div class="row">
-                    <!-- start portfolio item -->
-                    <div class="col-md-4">
-                        <div class="ot-portfolio-item">
-                            <figure class="effect-bubba">
-                                <img src="<?= base_url(); ?>public/images/demo/portfolio-1.jpg" alt="img02" class="img-responsive" />
-                                <figcaption>
-                                    <h2>Dean & Letter</h2>
-                                    <p>Branding, Design</p>
-                                    <a href="#" data-toggle="modal" data-target="#Modal-1">View more</a>
-                                </figcaption>
-                            </figure>
-                        </div>
-                    </div>
-                    <!-- end portfolio item -->
+                    <?php if (! empty($courses)) {
+                        foreach ($courses as $course) { ?>
+                            <div class="col-md-4">
+                                <div class="ot-portfolio-item">
+                                    <figure class="effect-bubba">
+                                        <img src="<?= base_url($course['course_img']); ?>" alt="img02" class="img-responsive center-block" />
+                                        <figcaption>
+                                            <a href="#" data-toggle="modal" data-target="#course_<?= $course['course_id'] ?>"></a>
+                                        </figcaption>
+                                    </figure>
+                                </div>
+                            </div>
+                            <div class="modal fade" id="course_<?= $course['course_id'] ?>" tabindex="-1" role="dialog" aria-labelledby="Modal-label-1">
+                                <div class="modal-dialog" role="document">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                            <h4 class="modal-title" id="Modal-label-1"><?= $course['course_name'] ?></h4>
+                                        </div>
+                                        <div class="modal-body">
+                                            <img src="<?= base_url($course['course_img']); ?>" alt="img01" class="img-responsive center-block" />
+                                            <div class="modal-works"><span><?= intval($course['course_duration']) ?> (h)</span></div>
+                                            <p><?= $course['course_description'] ?></p>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                    <?php }
+                    } ?>
                 </div>
             </div><!-- end container -->
         </section>

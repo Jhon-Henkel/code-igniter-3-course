@@ -158,7 +158,7 @@
                                         &nbsp;&nbsp;Importar Imagem
                                         <input type="file" id="btn_upload_course_image" accept="image/*" style="display: none">
                                     </label>
-                                    <input id="course_img" name="course_img">
+                                    <input id="course_img" name="course_img" hidden>
                                     <span class="help-block"></span>
                                 </div>
                             </div>
@@ -217,7 +217,7 @@
                                         &nbsp;&nbsp;Importar Imagem
                                         <input type="file" id="btn_upload_member_image" accept="image/*" style="display: none">
                                     </label>
-                                    <input id="member_img" name="member_img">
+                                    <input id="member_img" name="member_img" hidden>
                                     <span class="help-block"></span>
                                 </div>
                             </div>

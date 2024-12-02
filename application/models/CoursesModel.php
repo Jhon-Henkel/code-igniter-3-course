@@ -103,4 +103,10 @@ class CoursesModel extends CI_Model
     {
         return $this->db->count_all_results('courses');
     }
+
+    public function showCourses(): array
+    {
+        $this->db->from('courses');
+        return $this->db->get()->result_array();
+    }
 }

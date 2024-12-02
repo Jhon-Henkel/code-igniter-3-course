@@ -103,4 +103,11 @@ class TeamModel extends CI_Model
     {
         return $this->db->count_all_results('team');
     }
+
+    public function showTeam(): array
+    {
+        $this->db->from('team');
+        $this->db->order_by('member_name', 'asc');
+        return $this->db->get()->result_array();
+    }
 }
