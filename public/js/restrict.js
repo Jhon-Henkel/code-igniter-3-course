@@ -41,6 +41,8 @@ $(function ()  {
                 clearErrors();
                 if (response["status"] === 1) {
                     $("#modal_course").modal("hide");
+                    swal.fire("Sucesso!", "Curso salvo com sucesso!", "success");
+                    $("#dt_courses").DataTable().ajax.reload();
                 } else {
                     showErrorsModal(response["error_list"]);
                 }
@@ -63,6 +65,8 @@ $(function ()  {
                 clearErrors();
                 if (response["status"] === 1) {
                     $("#modal_member").modal("hide");
+                    swal.fire("Sucesso!", "Membro salvo com sucesso!", "success");
+                    $("#dt_team").DataTable().ajax.reload();
                 } else {
                     showErrorsModal(response["error_list"]);
                 }
@@ -85,6 +89,8 @@ $(function ()  {
                 clearErrors();
                 if (response["status"] === 1) {
                     $("#modal_user").modal("hide");
+                    swal.fire("Sucesso!", "Usuário salvo com sucesso!", "success");
+                    $("#dt_courses").DataTable().ajax.reload();
                 } else {
                     showErrorsModal(response["error_list"]);
                 }
@@ -157,6 +163,7 @@ $(function ()  {
     }
 
     $("#dt_courses").DataTable({
+        oLanguage: DATATABLES_PT_BR,
         autoWidth: false,
         processing: true,
         serverSide: true,
@@ -168,7 +175,7 @@ $(function ()  {
             {targets: "no-sort", orderable: false},
             {targets: "dt-center", className: "dt-center"}
         ],
-        initComplete: function () {
+        drawCallback: function () {
             activeBtnCourse();
         }
     })
@@ -219,6 +226,7 @@ $(function ()  {
     }
 
     $("#dt_team").DataTable({
+        oLanguage: DATATABLES_PT_BR,
         autoWidth: false,
         processing: true,
         serverSide: true,
@@ -230,7 +238,7 @@ $(function ()  {
             {targets: "no-sort", orderable: false},
             {targets: "dt-center", className: "dt-center"}
         ],
-        initComplete: function () {
+        drawCallback: function () {
             activeBtnMember();
         }
     })
@@ -280,6 +288,7 @@ $(function ()  {
     }
 
     $("#dt_users").DataTable({
+        oLanguage: DATATABLES_PT_BR,
         autoWidth: false,
         processing: true,
         serverSide: true,
@@ -291,7 +300,7 @@ $(function ()  {
             {targets: "no-sort", orderable: false},
             {targets: "dt-center", className: "dt-center"}
         ],
-        initComplete: function () {
+        drawCallback: function () {
             activeBtnUser();
         }
     })

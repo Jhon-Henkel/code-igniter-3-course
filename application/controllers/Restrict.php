@@ -121,6 +121,8 @@ class Restrict extends CI_Controller
             $newPath = getcwd() . "/public/images/courses/$fileName";
             rename($oldPath, $newPath);
             $data['course_img'] = "/public/images/courses/$fileName";
+        } else {
+            unset($data['course_img']);
         }
 
         if ($json['status'] === self::HAS_ERROR) {
@@ -159,7 +161,10 @@ class Restrict extends CI_Controller
             $oldPath = getcwd() . "/tmp/$fileName";
             $newPath = getcwd() . "/public/images/team/$fileName";
             rename($oldPath, $newPath);
-            $data['member_img'] = "/public/images/team/$fileName";
+            $data['member_photo'] = "/public/images/team/$fileName";
+            unset($data['member_img']);
+        } else {
+            unset($data['member_img']);
         }
 
         if ($json['status'] === self::HAS_ERROR) {
@@ -167,8 +172,6 @@ class Restrict extends CI_Controller
             return;
         }
 
-        $data['member_photo'] = $data['member_img'];
-        unset($data['member_img']);
         if (empty($data['member_id'])) {
             $this->TeamModel->insert($data);
         } else {
