@@ -192,6 +192,30 @@ $(function ()  {
             })
             return false
         })
+        $(".btn-del-member").off("click").on("click", function () {
+            const btn = $(this)
+            swal.fire({
+                title: "Atenção",
+                text: "Deseja realmente excluir este membro?",
+                icon: "question",
+                showCancelButton: true,
+                cancelButtonText: "Não",
+                confirmButtonColor: "#d9534f",
+                confirmButtonText: "Sim",
+            }).then(function (isConfirm) {
+                if (isConfirm.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: BASE_URL + "restrict/ajax_delete_member_data",
+                        data: {"member_id": btn.attr("member_id")},
+                        success: function () {
+                            swal.fire("Sucesso!", "Ação realizada com sucesso!", "success");
+                            $("#dt_team").DataTable().ajax.reload();
+                        }
+                    })
+                }
+            })
+        })
     }
 
     $("#dt_team").DataTable({
@@ -228,6 +252,30 @@ $(function ()  {
                 }
             })
             return false
+        })
+        $(".btn-del-user").off("click").on("click", function () {
+            const btn = $(this)
+            swal.fire({
+                title: "Atenção",
+                text: "Deseja realmente excluir este usuário?",
+                icon: "question",
+                showCancelButton: true,
+                cancelButtonText: "Não",
+                confirmButtonColor: "#d9534f",
+                confirmButtonText: "Sim",
+            }).then(function (isConfirm) {
+                if (isConfirm.value) {
+                    $.ajax({
+                        type: "POST",
+                        url: BASE_URL + "restrict/ajax_delete_user_data",
+                        data: {"user_id": btn.attr("user_id")},
+                        success: function () {
+                            swal.fire("Sucesso!", "Ação realizada com sucesso!", "success");
+                            $("#dt_users").DataTable().ajax.reload();
+                        }
+                    })
+                }
+            })
         })
     }
 

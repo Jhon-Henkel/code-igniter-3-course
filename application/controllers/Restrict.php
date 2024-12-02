@@ -394,4 +394,30 @@ class Restrict extends CI_Controller
         $json['status'] = self::NO_ERROR;
         echo json_encode($json);
     }
+
+    public function ajax_delete_member_data()
+    {
+        $this->validateAjax();
+
+        $this->load->model('TeamModel');
+        $memberId = $this->input->post('member_id');
+        $this->TeamModel->delete($memberId);
+
+        $json = $this->getDefaultResponse();
+        $json['status'] = self::NO_ERROR;
+        echo json_encode($json);
+    }
+
+    public function ajax_delete_user_data()
+    {
+        $this->validateAjax();
+
+        $this->load->model('UsersModel');
+        $userId = $this->input->post('user_id');
+        $this->UsersModel->delete($userId);
+
+        $json = $this->getDefaultResponse();
+        $json['status'] = self::NO_ERROR;
+        echo json_encode($json);
+    }
 }
